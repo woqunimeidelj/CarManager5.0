@@ -1,5 +1,6 @@
 package com.hsz.maven.dao.impl;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.hsz.maven.dao.CarDao;
 import com.hsz.maven.model.Car;
+import com.hsz.maven.utils.Pager;
 
 @Repository(value ="carDao")
 // 单例模式
@@ -91,4 +93,28 @@ public class CarDaoImpl implements CarDao {
 		return carLists;
 	}
 
+	@Override
+	public int getTotalCount() {
+		Session session = sessionFactory.getCurrentSession();
+		session.beginTransaction();
+		long count =  (long) session.createQuery("SELECT count(*) from Car").uniqueResult();
+		session.getTransaction().commit();
+		
+		return (int) count;
+		
+	}
+	
+	@Override
+	public List<Car> getPageCarLists(Pager pager) {
+		
+		Session session = sessionFactory.getCurrentSession();
+		session.beginTransaction();
+		
+		Query query = session.createQuery("FROM Car").setFirstResult(pager.getIStart()).setMaxResults(pager.getIStep());;
+		List<Car> carLists = (List<Car>) query.list();
+		session.getTransaction().commit();
+		
+		return carLists;
+
+	}
 }

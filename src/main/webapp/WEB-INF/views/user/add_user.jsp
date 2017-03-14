@@ -9,31 +9,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>客户关系管理系统</title>
-<meta name="author" content="">
-<meta name="keywords" content="">
-
-<link rel="stylesheet" type="text/css" href="/CRM_2.0/styles/visual.css" media="screen">
-<link rel="stylesheet" type="text/css" href="/CRM_2.0/styles/layout.css" media="screen">
-<link rel="stylesheet" type="text/css" href="/CRM_2.0/styles/print.css" media="print">
-
-<script type="text/javascript">
-	sfHover = function() {
-	var sfEls = document.getElementById("leftnav").getElementsByTagName("LI");
-	for (var i=0; i<sfEls.length; i++) {
-		sfEls[i].onmouseover=function() {
-			this.className+=" sfhover";
-		}
-		sfEls[i].onmouseout=function() {
-			this.className=this.className.replace(new RegExp(" sfhover\\b"), "");
-		}
-	}
-	}
-	if (window.attachEvent) window.attachEvent("onload", sfHover);
-</script>
-
-<script language="JavaScript" src="/CRM_2.0/scripts/common.js"></script>
 </head>
-</head>
+
 <body>
 <div id="midcolumn">
 <script>
@@ -67,22 +44,22 @@ function validateitem(){
     <tbody><tr bgcolor="#f0f0f0" height="20">
 
       <td width="30%"><div align="right">* 用户名：</div></td>
-      <td width="39%"><input name="username" type="text" id="username" size="20" value=""></td>
+      <td width="39%"><input name="username" type="text" id="username" size="20" value="${user.username}"></td>
       <td width="31%">&nbsp;</td>
     </tr>
     <tr bgcolor="#f5f5f5" height="20">
       <td><div align="right">* 密码：</div></td>
-      <td><input name="password" type="password" id="password" size="20" value=""></td>
+      <td><input name="password" type="password" id="password" size="20" value="${user.password}"></td>
       <td><label></label></td>
     </tr>
     <tr bgcolor="#f0f0f0" height="20">
       <td><div align="right">* 密码确认:</div></td>
-       <td><input name="configpassword" type="password" id="configpassword" size="20" value=""></td>
+       <td><input name="configpassword" type="password" id="configpassword" size="20" value="${user.password}"></td>
       <td><label></label></td>
     </tr><tr bgcolor="#f5f5f5" height="20">
       <td>&nbsp;</td>
       <td colspan="2"><input name="submit" type="submit" value="提交">
-       <input name="submit2" type="reset" value="重置"> <a href="/CRM_2.0"><font size="3" color="#000000">[返回]</font></a></td>
+       <input name="submit2" type="reset" value="重置"> <a href="<%=basePath%>login.do"><font size="3" color="#000000">[返回]</font></a></td>
     </tr>
   </tbody></table>
 </form>		

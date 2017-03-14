@@ -97,6 +97,7 @@ public class RoleController {
 		map.put("functionLists", functionLists);
 		map.put("functionAllLists", functionAllLists);
 		model.addAttribute("role_id", role_id);
+		model.addAttribute("role", role);
 		return "role/list_role_function";
 		
 	}
@@ -109,7 +110,7 @@ public class RoleController {
 	 */
 	//role/submitrolefunction.do
 	@RequestMapping("submitrolefunction")
-	public String submitRoleFunction(Integer role_id,Integer[] selectId) {
+	public String submitRoleFunction(Integer role_id,Integer[] selectId,Model model) {
 		Role role = roleServer.getRoleById(role_id);
 		role.getFunctionLists().clear();
 		
@@ -120,6 +121,7 @@ public class RoleController {
 		}
 		role.setFunctionLists(functionLists);
 		roleServer.updateRole(role); // 更新列表
+		model.addAttribute("role", role);
 		return "redirect:/role/listrolefunction.do?role_id="+role_id;
 		
 	}

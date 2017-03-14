@@ -39,7 +39,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<br>
 		<br>
 		<%--  <%=request.getContextPath() %> 获取根路径 --%>
-		<form action="./car/update.do" method="post"  onsubmit="return check()">
+		<form action="<%=basePath%>car/update.do" method="post"  onsubmit="return check()">
 			<input id="car" type="hidden" name="carnumber" value="${car.carnumber}"/><br/>
 			<input type="hidden" name="id" value="${car.id}" /><br/>
 			车辆信息:<input id="num" type="text" name="carname" placeholder="${car.carname}"/><br/>

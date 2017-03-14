@@ -36,8 +36,8 @@ public class UserServerImpl implements UserServer {
 
 	@Override
 	public User getUserById(int user_id) {
-		User user  = userDao.getUserById(user_id);
-		return user;
+		 
+		return  userDao.getUserById(user_id);
 	}
 
 	@Override
@@ -47,7 +47,7 @@ public class UserServerImpl implements UserServer {
 	}
 
 	@Override
-	public void updateUser(User user) {
+	public void updateUser(User user,String role_name) {
 		userDao.updateUser(user);
 
 	}
@@ -89,15 +89,23 @@ public class UserServerImpl implements UserServer {
 		}
 	}
 	
-
+	/**
+	 * 注册用户，赋予角色
+	 */
 	@Override
-	public void verifyUser(User user, int role_id) {
-		if(user.getState() == 2){
-			Role role = roleDao.getRoleById(role_id);
+	public void verifyUser(User user, String role_name) {
+		
+			Role role = roleDao.getRoleByName(role_name);
 			user.setRole(role);
 			userDao.updateUser(user);
-		}
 		
+		
+	}
+
+	@Override
+	public User getUserByName(String username) {
+		User user = userDao.getUserByName(username);
+		return user;
 	}
 
 }

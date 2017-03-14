@@ -53,10 +53,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</td> --%>
 				<td>${user.user_id}</td>
 				<td>${user.username}</td>
-				<td>${user.password}</td>
-				<td>${user.state}</td>
-				<td><a href="./delete.do?id=${user.user_id}">删除</a></td>
-				<td><a href="./find.do?user_id=${user.user_id}">审核</a></td>
+				<td>******</td>
+				<td><c:if test="${user.state == 1}">未通过</c:if>
+					<c:if test="${user.state == 2}">通过</c:if>
+				</td>
+				<td><a href="<%=basePath%>user/deleteuser.do?id=${user.user_id}">删除</a></td>
+				<td><a href="<%=basePath%>user/seleteuser.do?user_id=${user.user_id}">审核</a></td>
 			</tr>
 		</c:forEach>
 	

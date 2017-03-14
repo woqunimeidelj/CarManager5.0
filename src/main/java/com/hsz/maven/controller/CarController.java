@@ -1,6 +1,8 @@
 package com.hsz.maven.controller;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,10 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.hsz.maven.model.Car;
 import com.hsz.maven.server.CarServer;
+import com.hsz.maven.utils.Pager;
 
 @Controller
 @RequestMapping("car")
 public class CarController {
+	
+	private int mCurrentPager = 1; //当前页
 	
 	@Autowired
 	private CarServer carServer;
@@ -24,17 +29,34 @@ public class CarController {
 	}
 	
 	@RequestMapping("/add_two")
-	public String addCar(Car car) {
-		
-		System.out.println(car);
-		carServer.addCar(car);
+	public String addCar(Car car,Model model) {
+		if(carServer.findCarByCarNumber(car.getCarnumber()) == null){
+			carServer.addCar(car);
 		return "redirect:/car/show.do";
+		}else{
+			model.addAttribute("message", "添加的车辆信息已存在！");
+			return "redirect:/car/add.do";
+		}
 	}
 	
 	@RequestMapping("/show")
-	public String getAllStudent(Model model) {
-		ArrayList<Car> carLists = carServer.showCar();
-		model.addAttribute("carLists", carLists);
+	public String getAllCar(Integer page,Map<String, Object> map) {
+//		ArrayList<Car> carLists = carServer.showCar();
+//		model.addAttribute("carLists", carLists);
+//		return "/list_car";
+		
+		if(page != null && page > 0){
+			mCurrentPager = page;
+		}
+		
+		Pager pager = new Pager(carServer.getTotalCount(),mCurrentPager);
+		pager.setUrl("http://localhost:8080/CarManagerMaven/car/show.do");
+		
+		map.put("url", pager.getPageStr());
+		
+		List<Car> carLists = carServer.getPageCarLists(pager);
+		map.put("carLists", carLists);
+
 		return "/car/list_car";
 	}
 	
@@ -46,8 +68,7 @@ public class CarController {
 	
 	@RequestMapping("/update")
 	public String update(Car car,Integer id,Model model) {
-		System.out.println("1111111111:"+car);
-		
+	
 		carServer.updateCar(car, id);
 		return "redirect:/car/show.do";
 		

@@ -89,6 +89,7 @@
 					<%-- <td bgcolor="<%=color%>"><div align="center">${x.module.name}</div></td> --%>
 					<td bgcolor="<%=color%>"><div align="center"><%=function.getFunction_code() %></div></td>
 					<td bgcolor="<%=color%>" style="word-break: break-all;"><%=function.getDescription() %></td>
+	
 				</tr>
 
 			<%

@@ -14,8 +14,9 @@ import com.hsz.maven.model.User;
 
 public class UserManager  {
 	private static UserDao userDao;
-	
 	private static UserManager UMG = null;
+	
+	// 单例模式，如果UMG为空则new 一个，并且加载sprin配置文件
 	public static UserManager getInstance(){
 		if(UMG==null){
 			UMG = new UserManager();
@@ -24,6 +25,7 @@ public class UserManager  {
 		return UMG;
 	}
 	
+	//根据用户ID查询用户   获取用户角色  然后得到角色功能   判断角色是否具有权限
 	public  boolean getGroupPermission(String user_id, String action) {
 		boolean results = false;
 		User user = (User) userDao.getUserById(Integer.parseInt(user_id));
@@ -39,6 +41,8 @@ public class UserManager  {
 
 		return results;
 	}
+	
+	// 加载配置文件
 	public static void initUserManager(){
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
 		userDao = (UserDao) ctx.getBean("userDao");

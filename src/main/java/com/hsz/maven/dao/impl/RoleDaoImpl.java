@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.hsz.maven.dao.RoleDao;
 import com.hsz.maven.model.Role;
+import com.hsz.maven.model.User;
 import com.hsz.maven.utils.MyHibernateDaoSupport;
 
 @Repository("roleDao")
@@ -43,4 +44,13 @@ public class RoleDaoImpl extends MyHibernateDaoSupport implements RoleDao {
 		getHibernateTemplate().delete(role);
 	}
 
+	@Override
+	public Role getRoleByName(String role_name) {
+		List<Role> roles = (List<Role>) getHibernateTemplate().find("FROM Role WHERE role_name = ?",role_name);
+		if(roles != null && roles.size() > 0){
+			return roles.get(0);
+		}else{
+			return null;
+		}
+	}
 }

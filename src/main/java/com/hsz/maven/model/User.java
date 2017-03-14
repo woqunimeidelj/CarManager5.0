@@ -10,32 +10,26 @@ public class User {
 	private String username; // 用户名称
 	private String password; // 用户密码
 	private int state; //
-	private Role role; // 多端持有一端集合
+	private Role role; // 多端持有一端实例
 	
 	public User() {
 		
 	}
 
-	public User(String username, String password) {
+	public User(int user_id,String username, String password) {
+		this.user_id = user_id;
 		this.username = username;
 		this.password = password;
 	}
 	
-	public User(String username, String password, int state) {
-		
-		this.username = username;
-		this.password = password;
-		this.state = state;
-		
-	}
 
-	public User(int user_id, String username, String password, int state,Role role) {
+	public User(int user_id, String username, String password, int state) {
 		
 		this.user_id = user_id;
 		this.username = username;
 		this.password = password;
 		this.state = state;
-		this.role = role;
+
 	}
 
 	public int getUser_id() {

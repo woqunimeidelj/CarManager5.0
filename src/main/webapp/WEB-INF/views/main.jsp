@@ -36,12 +36,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</h2>
 			<ul style="display: block">
 				<li>
-					<a href="<%=basePath%>user/add_user.do" target="right"><span
-						class="icon-caret-right"></span>添加用户</a>
-				</li>
-				<li>
-					<a href="<%=basePath%>user/user_show.do" target="right"><span
-						class="icon-caret-right"></span>用户列表</a>
+					<a href="<%=basePath%>user/showuser.do" target="right"><span
+						class="icon-caret-right"></span>用户信息列表</a>
 				</li>
 
 			</ul>

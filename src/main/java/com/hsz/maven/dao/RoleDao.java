@@ -11,4 +11,5 @@ public interface RoleDao {
 	public Role getRoleById(int role_id); // 根据ID查询
 	public void deleteRoleById(int role_id); // 根据ID删除
 	public void updateRole(Role role); // 修改角色
+	public Role getRoleByName(String role_name); // 根据角色名查询
 }

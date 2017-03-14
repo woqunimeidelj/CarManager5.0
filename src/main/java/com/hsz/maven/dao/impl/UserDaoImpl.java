@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hsz.maven.dao.UserDao;
+import com.hsz.maven.model.Module;
 import com.hsz.maven.model.User;
 import com.hsz.maven.utils.MyHibernateDaoSupport;
 
@@ -28,7 +29,7 @@ public class UserDaoImpl extends MyHibernateDaoSupport implements UserDao{
 
 	@Override
 	public void deleteUserById(int user_id) {
-		User user = (User) getHibernateTemplate().find("FROM User");
+		User user = (User) getHibernateTemplate().get(User.class, user_id);
 		getHibernateTemplate().delete(user);
 	}
 
@@ -41,7 +42,7 @@ public class UserDaoImpl extends MyHibernateDaoSupport implements UserDao{
 	@Override
 	public User getUserById(int user_id) {
 		
-		return (User) getHibernateTemplate().find("FROM User");
+		return getHibernateTemplate().get(User.class, user_id);
 	}
 
 	@Override

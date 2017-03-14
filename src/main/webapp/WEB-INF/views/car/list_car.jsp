@@ -55,12 +55,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<td>${car.carname}</td>
 				<td>${car.owner}</td>
 				<td>${car.phone}</td>
-				<td><a href="./car/delete.do?id=${car.id}">删除</a></td>
-				<td><a href="./car/find.do?number=${car.carnumber}">修改</a></td>
+				<td><a href="<%=basePath%>car/delete.do?id=${car.id}">删除</a></td>
+				<td><a href="<%=basePath%>car/find.do?number=${car.carnumber}">修改</a></td>
 			</tr>
 		</c:forEach>
 	
 	</table>
-
+	<br>
+	${url}
 </body>
 </html>

@@ -14,19 +14,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 public class SignOnFilter implements Filter {
+	
 	private FilterConfig config;
 
 	/**
-	 * nonProtectedUris 存贮不需要权限处理的URL
+	 * 1.nonProtectedUris 存贮不需要权限处理的URL
 	 */
 	private HashMap nonProtectedUris = new HashMap();
 
 	/**
-	 * init方法在tomcat启动、程序加载时执行
+	 * 2.init方法在tomcat启动、程序加载时执行
 	 */
 	public void init(FilterConfig config) {
 		this.config = config;
+		// non-protected.uri  不需要过滤的请求，web-xml里配置
 		String uri = config.getInitParameter("non-protected.uri");
+		
 		StringTokenizer tok = new StringTokenizer(uri, ",");
 
 		while (tok.hasMoreTokens()) {
@@ -34,14 +37,20 @@ public class SignOnFilter implements Filter {
 			nonProtectedUris.put(url, url);
 		}
 	}
+	
+	public void destroy() {
+		
+		nonProtectedUris.clear();
+	}
 
 	/**
-	 * doFilter 每次.jspa的URL请求时执行，与web.xml配置文件有关
+	 * 3.doFilter 每次.do的URL请求时执行，与web.xml配置文件有关
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
-		String uri = req.getRequestURI();
+		String uri = req.getRequestURI(); // 获取uri地址
+		
 		if (uri.startsWith("/")) {
 			uri = uri.substring(1);
 		}
@@ -62,9 +71,6 @@ public class SignOnFilter implements Filter {
 		chain.doFilter(request, response);
 	}
 
-	public void destroy() {
-		nonProtectedUris.clear();
-	}
 
 	private boolean getPermission(HttpServletRequest request) {
 
@@ -72,13 +78,14 @@ public class SignOnFilter implements Filter {
 		if (session == null) {
 			return false;
 		}
-		//登录成功将userId保存到session中
+		// 登录成功将userId保存到session中
 		String user_id = session.getAttribute("user_id").toString();
 		String uri = request.getRequestURI();
 		int lastSlashPos = uri.lastIndexOf("/");
 		String action = uri.substring(lastSlashPos + 1);
 
 		try {
+			// 判断用户是否具有权限
 			return UserManager.getInstance().getGroupPermission(user_id, action);
 		} catch (Exception e) {
 			return false;
