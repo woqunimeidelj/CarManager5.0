@@ -32,7 +32,7 @@ public class CarController {
 	public String addCar(Car car,Model model) {
 		if(carServer.findCarByCarNumber(car.getCarnumber()) == null){
 			carServer.addCar(car);
-		return "redirect:/car/show.do";
+			return "redirect:/car/show.do";
 		}else{
 			model.addAttribute("message", "添加的车辆信息已存在！");
 			return "redirect:/car/add.do";

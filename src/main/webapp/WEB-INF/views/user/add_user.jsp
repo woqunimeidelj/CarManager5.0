@@ -44,17 +44,17 @@ function validateitem(){
     <tbody><tr bgcolor="#f0f0f0" height="20">
 
       <td width="30%"><div align="right">* 用户名：</div></td>
-      <td width="39%"><input name="username" type="text" id="username" size="20" value="${user.username}"></td>
+      <td width="39%"><input name="username" type="text" id="username" size="20" ></td>
       <td width="31%">&nbsp;</td>
     </tr>
     <tr bgcolor="#f5f5f5" height="20">
       <td><div align="right">* 密码：</div></td>
-      <td><input name="password" type="password" id="password" size="20" value="${user.password}"></td>
+      <td><input name="password" type="password" id="password" size="20" ></td>
       <td><label></label></td>
     </tr>
     <tr bgcolor="#f0f0f0" height="20">
       <td><div align="right">* 密码确认:</div></td>
-       <td><input name="configpassword" type="password" id="configpassword" size="20" value="${user.password}"></td>
+       <td><input name="configpassword" type="password" id="configpassword" size="20" ></td>
       <td><label></label></td>
     </tr><tr bgcolor="#f5f5f5" height="20">
       <td>&nbsp;</td>

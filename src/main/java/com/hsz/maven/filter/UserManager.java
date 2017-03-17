@@ -30,6 +30,7 @@ public class UserManager  {
 		boolean results = false;
 		User user = (User) userDao.getUserById(Integer.parseInt(user_id));
 		Role role = user.getRole();
+		System.out.println();
 		
 		Set<Function> functionLists = role.getFunctionLists();
 		for(Function fuction : functionLists){
