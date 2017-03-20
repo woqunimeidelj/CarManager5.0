@@ -24,29 +24,6 @@ public class UserController {
 	private RoleServer roleServer;
 	
 	/**
-	 * 登录到注册界面
-	 * @return
-	 */
-	//user/register.do
-	@RequestMapping("register")
-	public String register(){
-		return "user/add_user"; 
-	}
-	
-	/**
-	 * 1.执行注册用户操作
-	 * @param user
-	 * @param model
-	 * @return
-	 */
-	//user/adduser.do
-	@RequestMapping("adduser")
-	public String addUser(User user,Model model) {
-		userServer.addUser(user);
-		return "redirect:/login.do";
-	}
-	
-	/**
 	 * 2.显示用户信息列表界面
 	 * @param map
 	 * @return

@@ -57,12 +57,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div>
 						</div>
 						<div style="padding: 30px;">
-							<input type="submit"
-								class="button button-block bg-main text-big input-big"
-								value="登录">&nbsp;&nbsp;
-								<h4>
-									[<a href="<%=basePath%>/user/register.do">注册</a>]
-								</h4>
+							<input type="submit" class="button button-block bg-main text-big input-big" value="登录" >&nbsp;&nbsp;
+							<h2>
+							<a href="<%=basePath%>register.do" class="button-block">[注册]</a>
+							</h2>
+							
 						</div>
 					</div>
 				</form> 

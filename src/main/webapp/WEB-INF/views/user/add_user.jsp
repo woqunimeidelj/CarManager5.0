@@ -39,7 +39,7 @@ function validateitem(){
  }
 </script>
 <h3>用户注册</h3>
-<form action="<%=basePath%>user/adduser.do" method="post" name="registerform" id="registerform" onsubmit="return validateitem()">
+<form action="<%=basePath%>adduser.do" method="post" name="registerform" id="registerform" onsubmit="return validateitem()">
   <table width="100%" border="0" cellpadding="1" cellspacing="1" bgcolor="#CCCCCC">
     <tbody><tr bgcolor="#f0f0f0" height="20">
 
