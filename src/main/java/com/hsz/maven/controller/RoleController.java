@@ -32,7 +32,7 @@ public class RoleController {
 	 * @return
 	 */
 	//role/login_role.do
-	@RequestMapping("login_role")
+	@RequestMapping("loginrole")
 	public String loginRole(Model model) {
 		return "role/add_role";
 		

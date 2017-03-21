@@ -31,7 +31,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<br>
 	<br>
 	<div>
-		<form action="<%=basePath%>/car/find.do" method="post">
+		<form action="<%=basePath%>car/find.do" method="post">
 			<select name="type" class="aa">
 				<option value="carnumber">车牌号码</option>
 				<option value="phone">电话号码</option>

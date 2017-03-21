@@ -27,7 +27,7 @@ function _delete(url,msg)
 	<h3>模块浏览</h3>
 	${actionmessage}
 	<p>
-		[<a href="<%=contextPath%>/module/login_module.do">创建模块</a>]
+		[<a href="<%=contextPath%>/module/loginmodule.do">创建模块</a>]
 	</p>
 	<table width="100%%" border="0" cellpadding="2" cellspacing="2"
 		bgcolor="#cccccc">

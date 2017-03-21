@@ -46,11 +46,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</h2>
 			<ul>
 				<li>
-					<a href="./car/show.do" target="right"><span
+					<a href="<%=basePath%>car/show.do" target="right"><span
 						class="icon-caret-right"></span>车辆信息列表</a>
 				</li>
 				<li>
-					<a href="./car/add.do" target="right"><span
+					<a href="<%=basePath%>car/add.do" target="right"><span
 						class="icon-caret-right"></span>车辆信息添加</a>
 				</li>
 				<li>
@@ -89,10 +89,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </script>
 		<ul class="bread">
 			<li>
-				<a href="<%=basePath%>/module/showmodule.do" target="right" class="icon-home">模块管理</a>
+				<a href="<%=basePath%>module/showmodule.do" target="right" class="icon-home">模块管理</a>
 			</li>
 			<li>
-				<a href="<%=basePath%>/role/showrole.do" id="a_leader_txt">角色管理</a>
+				<a href="<%=basePath%>role/showrole.do" id="a_leader_txt">角色管理</a>
 			</li>
 		</ul>
 		<div class="admin">

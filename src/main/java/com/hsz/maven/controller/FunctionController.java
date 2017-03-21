@@ -31,8 +31,8 @@ public class FunctionController {
 	 * @param model
 	 * @return
 	 */
-	//function/login_function.do
-	@RequestMapping("login_function")
+	//function/loginfunction.do
+	@RequestMapping("loginfunction")
 	public String loginFunction(Model model){
 		
 		return "function/add_function";

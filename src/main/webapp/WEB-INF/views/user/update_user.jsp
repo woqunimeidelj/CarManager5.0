@@ -10,8 +10,6 @@
 
 <html>
 <head>
-<base href="<%=basePath%>">
-
 <title>审核注册用户</title>
 
 	<style>
@@ -24,7 +22,7 @@
 
 <body>
 	<h1 align="center" style="color:red">审核注册用户</h1>
-	<form action="./user/updateuser.do" method="post">
+	<form action="<%=basePath%>user/updateuser.do" method="post">
 		<input type="hidden" name="user_id" value="${user.user_id}">
 		用户名:<input type="text" name="username" value="${user.username}"><br/>
 		密码:<input type="text" name="password" value="${user.password}"><br/>

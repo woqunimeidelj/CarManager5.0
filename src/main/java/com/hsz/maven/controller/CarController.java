@@ -28,7 +28,7 @@ public class CarController {
 		return "/car/add_car";
 	}
 	
-	@RequestMapping("/add_two")
+	@RequestMapping("/addtwo")
 	public String addCar(Car car,Model model) {
 		if(carServer.findCarByCarNumber(car.getCarnumber()) == null){
 			carServer.addCar(car);

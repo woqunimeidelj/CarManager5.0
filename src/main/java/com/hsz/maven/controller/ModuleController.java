@@ -24,7 +24,7 @@ public class ModuleController {
 	 * @return
 	 */
 	//module/addmodule.do
-	@RequestMapping("login_module")
+	@RequestMapping("loginmodule")
 	public String loginModule(Model model){
 		
 		return "module/add_module";

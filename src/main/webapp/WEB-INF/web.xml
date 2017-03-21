@@ -38,7 +38,7 @@
       <filter-class>com.hsz.maven.filter.SignOnFilter</filter-class>
 	 <init-param>
 		<param-name>non-protected.uri</param-name>
-		<param-value>login.do,login_submit.do,register.do,adduser.do</param-value>
+		<param-value>login.do,loginsubmit.do,register.do,adduser.do</param-value>
 	 </init-param>
    	</filter>
     

@@ -23,7 +23,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="xs6 xm4 xs3-move xm4-move">
 				<div style="height: 150px;"></div>
 				<div class="media media-y margin-big-bottom"></div>
-				<form action="./login_submit.do" method="post">
+				<form action="<%=basePath%>loginsubmit.do" method="post">
 					<div class="panel loginbox">
 						<div class="text-center margin-big padding-big-top">
 							<h1>洗车系统控制管理中心</h1>

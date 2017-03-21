@@ -23,7 +23,7 @@ public class LoginController {
 		return "login"; // 此处返回值login是和jsp文件名一致
 	}
 	
-	@RequestMapping("/login_submit")
+	@RequestMapping("/loginsubmit")
 	public String loginSubmit(HttpServletRequest request,User user,Model model){
 		User users = userServer.login(user);
 		if(users == null){

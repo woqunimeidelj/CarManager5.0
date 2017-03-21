@@ -12,7 +12,7 @@
 <body>
 	<h3>权限管理 &gt; 角色管理 &gt; 浏览角色</h3>
 	<p>
-		[<a href="<%=contextPath%>/role/login_role.do">添加角色</a>]
+		[<a href="<%=contextPath%>/role/loginrole.do">添加角色</a>]
 	</p>
 	<p>
 		[<a href="<%=contextPath%>/module/showmodule.do">返回主界面</a>]

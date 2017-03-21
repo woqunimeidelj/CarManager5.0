@@ -21,7 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<br>
 	<br>
 	<br>
-	<form action="<%=basePath%>car/add_two.do" method="post" enctype="application/x-www-form-urlencoded">
+	<form action="<%=basePath%>car/addtwo.do" method="post" enctype="application/x-www-form-urlencoded">
 		车牌号码:<input type="text" name="carnumber" value="${car.carnumber}"/><br><br>
 		车辆类型:<input type="text" name="carname" value="${car.carname }"/><br><br>
 		车主姓名:<input type="text" name="owner" value="${car.owner }"/><br><br>
