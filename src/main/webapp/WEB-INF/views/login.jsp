@@ -15,6 +15,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link rel="stylesheet" href="<%=basePath%>/resources/css/admin.css">
 <script src="<%=basePath%>/resources/js/jquery.js"></script>
 <script src="<%=basePath%>/resources/js/pintuer.js"></script>
+
+	<style type="text/css">
+		.one{
+				text-align:center;
+				
+			}
+			h3{
+				font-style:italic;
+				font-size:45px;
+				color:white;
+			}
+	</style>
 </head>
 <body>
 	<div class="bg"></div>
@@ -23,10 +35,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="xs6 xm4 xs3-move xm4-move">
 				<div style="height: 150px;"></div>
 				<div class="media media-y margin-big-bottom"></div>
+				<div class="one">
+					<h3><b>顶呱呱4S洗车中心</b></h3>
+				</div>
 				<form action="<%=basePath%>loginsubmit.do" method="post">
 					<div class="panel loginbox">
 						<div class="text-center margin-big padding-big-top">
-							<h1>洗车系统控制管理中心</h1>
+							<h1>洗车系统登录</h1>
 						</div>
 						<div class="panel-body"
 							style="padding: 30px; padding-bottom: 10px; padding-top: 10px;">
