@@ -1,6 +1,8 @@
 package com.hsz.maven.controller;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,17 +26,38 @@ public class LoginController {
 	}
 	
 	@RequestMapping("/loginsubmit")
-	public String loginSubmit(HttpServletRequest request,User user,Model model){
+	public String loginSubmit(HttpServletRequest request,HttpServletResponse response,User user,String autoLogin,Model model){
 		User users = userServer.login(user);
-		if(users == null){
-			model.addAttribute("error", "用户名密码出错或未通过审核!");
+		int maxAGE = 60*60*12;
+		if(users != null && users.getState() == 2){
+			HttpSession session = request.getSession();
+			// 统一登陆认证，保存用户到session,权限管理
+			session.setAttribute("user_id", users.getUser_id()	);
+			// 选择保存登录信息
+			if("true".equals(autoLogin)){
+				saveCookie(response, user, maxAGE);
+			}else{
+				saveCookie(response, user, 0);
+			}
+			return "main";
+		}else if(users != null && users.getState() ==1){
+			model.addAttribute("error", "用户正在审核中！！！");
 			return "login";
 		}else{
-		HttpSession session = request.getSession();
-		session.setAttribute("user_id", users.getUser_id()	);
-		return "main";
+			model.addAttribute("error", "用户名或密码错误！！！");
+			return "login";
 		}
 	}
+	
+		//保存用户信息到cookie
+		public void saveCookie(HttpServletResponse response,User user,int maxAGE){
+			Cookie cookie_name = new Cookie("username", user.getUsername());
+			Cookie cookie_psw = new Cookie("password", user.getPassword());
+			cookie_name.setMaxAge(maxAGE);
+			cookie_psw.setMaxAge(maxAGE);
+			response.addCookie(cookie_name);
+			response.addCookie(cookie_psw);
+		}
 	
 	/**
 	 * 登录到注册界面
@@ -57,5 +80,9 @@ public class LoginController {
 	public String addUser(User user,Model model) {
 		userServer.addUser(user);
 		return "redirect:/login.do";
+	}
+	@RequestMapping("/form")
+	public String form(){
+		return "/homepage1";
 	}
 }

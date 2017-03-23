@@ -49,32 +49,31 @@ public class SignOnFilter implements Filter {
 		HttpServletRequest req = (HttpServletRequest) request;
 		
 		String uri = req.getRequestURI(); // 获取uri地址
-		
+		System.out.println("uri>>>>>"+uri);
+		if( uri.endsWith(".css") || uri.endsWith(".js") || uri.endsWith(".jpg") || uri.endsWith(".png")){
+			chain.doFilter(request, response);
+			return;
+		}
+
 		int index = 0;
 		if (uri.lastIndexOf("/") != -1) {  // http://localhost:8080/car/ 地址：包含/
-			if (uri.lastIndexOf("/") == uri.length() - 1) { // 如果地址最后为：http://localhost:8080/car/
-															// / 就先切割掉最后一个/
-															// 变为：http://localhost:8080/car
-				index = uri.lastIndexOf("/");
-				uri = uri.substring(0, index);
-			}
-			index = uri.lastIndexOf("/");// 切割出相对路径：如：car
-			uri = uri.substring(index + 1);
+//			if (uri.lastIndexOf("/") == uri.length() - 1) { // 如果地址最后为：http://localhost:8080/car/
+//															// / 就先切割掉最后一个/
+//															// 变为：http://localhost:8080/car
+//				index = uri.lastIndexOf("/");
+//				uri = uri.substring(0, index);
+//			}
+//			index = uri.lastIndexOf("/");// 切割出相对路径：如：car
+//			uri = uri.substring(index + 1);
+			index = uri.lastIndexOf("/");
+			uri = uri.substring(index+1);
 		}
-		
-		/*if (uri.startsWith("/")) { //如果uri以/开头，则去掉/
-			uri = uri.substring(1);
-		}
-		int i = uri.indexOf("/"); //第一次出现/的下标
-
-		if (i >= 0) { //假如uri包含/
-			uri = uri.substring(i + 1); //从第一次出现/的后开始	切割
-		}*/
 		
 		if (!isNonProtected(uri)) // 如果配置文件属性non-protected.uri（不处理uri地址）中不包含请求uri,则执行下面判继
 		{
 			if (!getPermission(req)) // 权限不够时执行
-			{
+			{	
+				System.out.println("111111111");
 				config.getServletContext().getRequestDispatcher("/securieserror.jsp").forward(request, response);
 				return;
 			}
@@ -88,33 +87,20 @@ public class SignOnFilter implements Filter {
 		nonProtectedUris.clear();
 	}
 	
-	// 给用户赋予权限
+	// 判断用户是否具有权限
 	private boolean getPermission(HttpServletRequest request) {
 
-		HttpSession session = request.getSession(false);
+		HttpSession session = request.getSession();
 		if (session == null) {
 			return false;
 		}
 		// 登录成功将userId保存到session中
-		String user_id = session.getAttribute("user_id").toString();
+		int user_id = (int) session.getAttribute("user_id");
+		
 		String uri = request.getRequestURI();
 		int lastSlashPos = uri.lastIndexOf("/");
 		String action = uri.substring(lastSlashPos + 1);
-		/*int lastSlashPos = uri.lastIndexOf("/");
-		
-		if (lastSlashPos==uri.length()-1) { //如果uri以/结尾，则去掉/
-			uri = uri.substring(0,lastSlashPos);
-		}
-		
-		String action="";
-		int i=uri.lastIndexOf("/"); //最后"/"的下标
-		if(i >= 0){ //uri包含"/"
-			int j=uri.lastIndexOf("/",i); //取倒数第二个"/"下标
-			if(j>=0){ //假如存在第二个"/"
-				action=uri.substring(j); //以倒数第二个"/"切割		
-				}
-			action=uri.substring(i); //以倒数第一个"/"切割	
-	}*/	
+	
 		try {
 			// 判断用户是否具有权限
 			return UserManager.getInstance().getGroupPermission(user_id, action);

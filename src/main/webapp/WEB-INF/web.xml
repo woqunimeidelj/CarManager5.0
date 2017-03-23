@@ -32,19 +32,19 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	
-	<!-- 权限过虑  过滤器 -->
+	<!-- 权限过虑 和 统一登录认证  过滤器 -->
 	  <filter>
 	  <filter-name>SignonFilter</filter-name>
       <filter-class>com.hsz.maven.filter.SignOnFilter</filter-class>
 	 <init-param>
 		<param-name>non-protected.uri</param-name>
-		<param-value>login.do,loginsubmit.do,register.do,adduser.do</param-value>
+		<param-value>login.do,loginsubmit.do,register.do,adduser.do,form.do,find_car.jsp,homepage1.jsp</param-value>
 	 </init-param>
    	</filter>
     
     <filter-mapping>
 	  	<filter-name>SignonFilter</filter-name>
-	   	<url-pattern>*.do</url-pattern>
+	   	<url-pattern>/*</url-pattern>
     </filter-mapping> 
 	
 	<!-- 前端控制器 加载spring-servlet.xml文件 -->

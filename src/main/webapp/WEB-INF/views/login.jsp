@@ -33,11 +33,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div class="container">
 		<div class="line bouncein">
 			<div class="xs6 xm4 xs3-move xm4-move">
-				<div style="height: 150px;"></div>
+				<div style="height: 50px;"></div>
 				<div class="media media-y margin-big-bottom"></div>
 				<div class="one">
 					<h3><b>顶呱呱4S洗车中心</b></h3>
 				</div>
+				
+				<!-- cookie保存登录信息 -->
+				<%
+					String username ="";
+					String password ="";
+					Cookie[] cookies = request.getCookies();
+					if(cookies != null && cookies.length > 0){
+						for(Cookie c : cookies){
+							if(c.getName().equals("username")){
+								username = c.getValue();
+							}else if(c.getName().equals("password")){
+								password = c.getValue();
+							}
+						}
+					}
+				
+				%>
+				
 				<form action="<%=basePath%>loginsubmit.do" method="post">
 					<div class="panel loginbox">
 						<div class="text-center margin-big padding-big-top">
@@ -64,6 +82,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             <input type="text" class="input input-big" name="code" placeholder="填写右侧的验证码" data-validate="required:请填写右侧的验证码" />
                            <img src="<%=basePath%>/resources/images/passcode.jpg" alt="" width="100" height="32" class="passcode" style="height:43px;cursor:pointer;" onclick="this.src=this.src+'?'">                      
                         </div>
+                        <input type="checkbox" name="autoLogin" value="true"
+							checked="checked">保存登录信息	<br />
                     </div> 
                 </div>
 							
@@ -75,13 +95,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<input type="submit" class="button button-block bg-main text-big input-big" value="登录" >&nbsp;&nbsp;
 							<h2>
 							<a href="<%=basePath%>register.do" class="button-block">[注册]</a>
-							</h2>
+							</h2> 
 							
 						</div>
 					</div>
-				</form> 
-				
-				
+				</form>
+	
 			</div>
 		</div>
 	</div>
